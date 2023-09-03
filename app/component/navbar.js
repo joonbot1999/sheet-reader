@@ -1,21 +1,19 @@
 'use client'
 
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
-import Link from 'next/link'
+import Link from "next/link"
 
 export default function NavbarComponent() {
     return (
-            <Nav fill variant="pills" defaultActiveKey="/" className="bg-blue-300">
-                <Nav.Item>
-                    <Link href="/">Main</Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Link href="/post">Post</Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Link href="/delete">Delete</Link>
-                </Nav.Item>
-            </Nav>
+        <div className="flex justify-evenly bg-slate-500">
+            <div>
+                <Link href="/" className="text-stone-200">Home</Link>
+            </div>
+            <div>
+                <Link href="/post" className="text-stone-200">Post</Link>
+            </div>
+            <div>
+                <Link href="/delete" className="text-stone-200">Delete</Link>
+            </div>
+        </div>
     )
 }

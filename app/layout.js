@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Navbar from "../app/component/navbar"
@@ -15,7 +14,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="bg-white">
         <Navbar/>
-        {children}
+        <main>
+          {children}
+        </main>
       </body>
     </html>
   )
