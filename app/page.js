@@ -13,7 +13,7 @@ export default function Home() {
         if (storedData) {
           setData(JSON.parse(storedData));
           setIsLoading(false);
-          const response = await fetch('/api/document', {
+          const response = await fetch('/api/all', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ export default function Home() {
           }
         } else {
           // If data is not in local storage, fetch it from the server
-          const response = await fetch('/api/document', {
+          const response = await fetch('/api/all', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'

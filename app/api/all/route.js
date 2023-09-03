@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { doc } from '../sheetapi'; // Adjust the import path
 
-export async function GET({ req, res }) {
+export async function GET() {
     try {
         await doc.loadInfo();
         const sheet = doc.sheetsByIndex[0];
