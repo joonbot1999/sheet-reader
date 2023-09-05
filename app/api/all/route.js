@@ -5,10 +5,8 @@ export async function GET() {
     try {
         await doc.loadInfo();
         const sheet = doc.sheetsByIndex[0];
-        //const rowp = await sheet.addRow({todo: 'Larry'});
         await sheet.loadHeaderRow()
         const rows = await sheet.getRows()
-        console.log(sheet.headerValues)
         const cells = await sheet.loadCells('A1:A14')
         let todo = []
         for (let i = 0; i < sheet.cellStats.nonEmpty - 1; i++) {
