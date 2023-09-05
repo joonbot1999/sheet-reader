@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { doc } from '../sheetapi'; // Adjust the import path
 
+// GET request to get all data
 export async function GET() {
     try {
         await doc.loadInfo();

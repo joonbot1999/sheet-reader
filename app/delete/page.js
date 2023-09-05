@@ -9,6 +9,7 @@ export default function Home() {
     const [data, setData] = useState(globalArray);
     const router = useRouter();
 
+    // if the list is empty, redirect to the main page
     useEffect(() => {
         if (globalArray.length === 0) {
             router.push("/");
@@ -18,6 +19,7 @@ export default function Home() {
 
     async function handleDelete(key) {
         try {
+            // delete on update route (only reads DELETE header)
             const response = await fetch('/api/update', {
                 method: 'DELETE',
                 headers: {
@@ -41,13 +43,13 @@ export default function Home() {
     return (
         <main className='flex justify-center min-h-screen bg-gray-100'>
             <section className=' bg-white p-6 rounded-lg shadow-md w-1/2'>
-                <h1 className='text-2xl font-bold text-center mb-4'>Update or Add a Task</h1>
+                <h1 className='text-2xl font-bold text-center mb-4'>Delete a Task</h1>
                 <AnimatePresence>
                 {data && data.map((element, key) => (
                     <motion.div 
-                        initial={{x:-1000}}
-                        animate={{x:0}}
-                        exit={{x:1000}}
+                        initial={{ x: -1000 }}
+                        animate={{ x: 0 }}
+                        exit={{ x: 1000 }}
                         className='flex items-center justify-between mb-2' 
                         transition={{ duration: 0.5, delay: 0.2 + key * 0.1 }}
                         key={key}

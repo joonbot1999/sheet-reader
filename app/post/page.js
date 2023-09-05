@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export default function Home() {
   let globalArray = JSON.parse(localStorage.getItem('documentData')) || [];
@@ -12,6 +12,7 @@ export default function Home() {
   const updateRef = useRef(null);
   const router = useRouter();
 
+  // if the list is empty, redirect to the main page
   useEffect(() => {
     if (globalArray.length === 0) {
       router.push("/");
@@ -19,6 +20,7 @@ export default function Home() {
     setData([...globalArray]);
   }, []);
 
+  // handles post function
   async function handlePost() {
     try {
       const inputValue = inputRef.current.value;
@@ -49,6 +51,7 @@ export default function Home() {
     }
   }
 
+  // handles update function 
   async function handleUpdate() {
     makeRef(null);
     setUpdate(!update);
@@ -67,6 +70,7 @@ export default function Home() {
           body: JSON.stringify({ updateValue, key }),
         });
         if (response.status === 200) {
+          // updates the local storage
           globalArray[key] = updateValue;
           setData(globalArray);
           localStorage.setItem('documentData', JSON.stringify(globalArray));
@@ -95,14 +99,11 @@ export default function Home() {
         transition={{ duration: 0.5 }}
         className='bg-white p-6 rounded-lg shadow-md w-1/2'
       >
-        <motion.h1
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
+        <h1
           className='text-2xl font-bold text-center mb-4'
         >
           Update or Add a Task
-        </motion.h1>
+        </h1>
         {data &&
           data.map((element, key) => (
             <motion.div
@@ -138,12 +139,14 @@ export default function Home() {
               </motion.button>
             </motion.div>
           ))}
+        <AnimatePresence>
         {update && (
           <motion.div
             className="absolute left-1/4 top-1/4 transform -translate-x-1/2 -translate-y-1/2 bg-slate-500 z-10 shadow-lg p-6 rounded-lg flex items-center justify-center w-1/2"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
+            exit={{ opacity: 0, scale: 0 }}
+            transition={{ duration: 0.2 }}
           >
             <section className="flex flex-col items-center">
               <motion.div
@@ -186,6 +189,7 @@ export default function Home() {
             </motion.div>
           </motion.div>
         )}
+        </AnimatePresence>
         <div className='mt-5'>
           <input
             ref={inputRef}

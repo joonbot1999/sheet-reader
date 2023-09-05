@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { doc } from '../sheetapi'; // Adjust the import path
 
+// POST request to update
 export async function POST(request) {
     try {
         const data = await request.json();
@@ -25,6 +26,7 @@ export async function POST(request) {
     }
 }
 
+// DELETE request
 export async function DELETE(request) {
     try {
         const data = await request.json();

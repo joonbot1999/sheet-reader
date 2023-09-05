@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { doc } from '../sheetapi'; // Adjust the import path
 
+// POST request to post data
 export async function POST(request) {
     try {
         const data = await request.json();

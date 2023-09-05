@@ -10,6 +10,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // accesses local storage first to check preexisting data
         const storedData = localStorage.getItem('documentData');
         if (storedData) {
           setData(JSON.parse(storedData));
@@ -23,6 +24,7 @@ export default function Home() {
             }
           });
           if (response.ok) {
+            // updates the local storage if the response is ok
             const returnedData = await response.json();
             setData(returnedData.list);
             setCompleteStates(Array(returnedData.list.length).fill(false));
@@ -41,6 +43,7 @@ export default function Home() {
     fetchData();
   }, []);
 
+  // to handle individual toggle
   const handleCompleteToggle = (index) => {
     const newCompleteStates = [...completeStates];
     newCompleteStates[index] = !newCompleteStates[index];
