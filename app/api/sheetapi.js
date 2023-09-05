@@ -10,6 +10,6 @@ const serviceAccountAuth = new JWT({
     ]
 })
 
-const doc = new GoogleSpreadsheet('1vbAXCHs3i4fNLZB-pN8uKSuVBV5lwP2LQUOrEUXGu4s', serviceAccountAuth);
+const doc = new GoogleSpreadsheet('enter your route here', serviceAccountAuth);
 
 export { doc, serviceAccountAuth }; // Export 'doc' and 'serviceAccountAuth'
